@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+
+    <bean id="userDao" class="main.java.com.sxd.dao.impl.UserDaoImpl"/>
+
+
+    <bean id="userService" class="main.java.com.sxd.service.impl.UserServiceImpl"
+        p:userDao-ref="userDao">
+
+
+    </bean>
+
+    <context:component-scan base-package="main.java.com.sxd.domain"/>
+
+    <bean id="wheel" class="main.java.com.sxd.domain.Wheel"
+        p:radius="150.0"
+    />
+
+    <bean id="car" class="main.java.com.sxd.domain.Car" init-method="init"
+        p:brand="宝马"
+        p:color="Blue"
+        p:maxSpeed="200m/s"
+        />
+
+    <bean id="car2" class="main.java.com.sxd.domain.Car">
+        <!--<constructor-arg name="brand" value="特斯拉"/>-->
+        <!--<constructor-arg name="color" value="blue"/>-->
+        <!--<constructor-arg name="maxSpeed" value="200m/s"/>-->
+        <!--<constructor-arg index="0" type="java.lang.String" value=" 特斯拉 "/>-->
+        <!--<constructor-arg index="1" type="java.lang.String" value="blue"/>-->
+        <!--<constructor-arg index="2" type="java.lang.String" value="200m/s"/>-->
+        <property name="brand" value="#{car.maxSpeed}"/>
+        <property name="weight" value="200"/>
+        <property name="wheel" ref="wheel"/>
+        <property name="wheel.radius" value="150.2"/>
+
+    </bean>
+
+
+    <bean id="myBeanNameAware" class="main.java.com.sxd.domain.MyBeanNameAware" />
+    <bean id="myBeanFactoryAware" class="main.java.com.sxd.domain.MyBeanFactoryAware"/>
+    <bean id="myBeanPostProcessor" class="main.java.com.sxd.domain.MyBeanPostProcess"/>
+    <bean id="myBeanFactoryPostProcessor" class="main.java.com.sxd.domain.MyBeanPostFactoryProcessor"/>
+
+
+    <bean id="a" class="main.java.com.sxd.domain.A">
+
+    </bean>
+
+</beans>
