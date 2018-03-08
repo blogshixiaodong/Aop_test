@@ -37,7 +37,7 @@ public class ProxyTest {
 
         Waiter proxyWaiter =(Waiter) proxyFactory.getProxy();
         proxyWaiter.greetTo("Shixiaodong");
-
+        //
 
     }
 }
